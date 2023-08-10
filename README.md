@@ -8,4 +8,4 @@
 ---------------------------
 脚本输出结果如下
 
-![运行结果](https://github.com/Yeswwq/system_check_api/blob/main/python_system_check.png)https://github.com/Yeswwq/system_check_api/blob/main/python_system_check.png "运行结果")
+![运行结果](https://github.com/Yeswwq/system_check_api/blob/main/python_system_check.png "运行结果")
