@@ -180,13 +180,13 @@ if __name__ == '__main__':
         gpu_sifang -= 1
         if gpu_sifang == 1:
             gpu_loop1 = w.Win32_VideoController()[gpu_sifang]
-            gpu_daxiao1 = "显卡厂商：" + gpu_loop1.AdapterCompatibility + "\n显卡型号:" + gpu_loop1.Description + "\n显存:" + str("%.2f"%(gpu_loop1.AdapterRAM/-1024 **3)) + "GB" + "\n当前分辨率:" +str(gpu_loop1.CurrentHorizontalResolution) + "x" +str(gpu_loop1.CurrentVerticalResolution) + "\t当前刷新率：" +str(gpu_loop1.CurrentRefreshRate)
+            gpu_daxiao1 = "显卡厂商：" + gpu_loop1.AdapterCompatibility + "\n显卡型号:" + gpu_loop1.Description + "\n显存:" + str("%.2f"%(gpu_loop1.AdapterRAM/1024 **3)) + "GB" + "\n当前分辨率:" +str(gpu_loop1.CurrentHorizontalResolution) + "x" +str(gpu_loop1.CurrentVerticalResolution) + "\t当前刷新率：" +str(gpu_loop1.CurrentRefreshRate)
             print(gpu_daxiao1)
 
 
         elif gpu_sifang == 0:
             gpu_loop0 = w.Win32_VideoController()[gpu_sifang]
-            gpu_daxiao0 = "显卡厂商：" + gpu_loop0.AdapterCompatibility + "\n显卡型号:" + gpu_loop0.Description + "\n显存:" + str("%.2f"%(int(gpu_loop0.AdapterRAM)/-1024 **3)) + "GB" + "\n当前分辨率:" +str(gpu_loop0.CurrentHorizontalResolution) + "x" +str(gpu_loop0.CurrentVerticalResolution) + "\t当前刷新率：" +str(gpu_loop0.CurrentRefreshRate)
+            gpu_daxiao0 = "显卡厂商：" + gpu_loop0.AdapterCompatibility + "\n显卡型号:" + gpu_loop0.Description + "\n显存:" + str("%.2f"%(int(gpu_loop0.AdapterRAM)/1024 **3)) + "GB" + "\n当前分辨率:" +str(gpu_loop0.CurrentHorizontalResolution) + "x" +str(gpu_loop0.CurrentVerticalResolution) + "\t当前刷新率：" +str(gpu_loop0.CurrentRefreshRate)
             print(gpu_daxiao0)
 
     #获取计算机名称和IP
