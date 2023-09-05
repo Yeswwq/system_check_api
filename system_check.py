@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import sys
 import psutil
 import subprocess
@@ -201,3 +202,60 @@ if __name__ == '__main__':
     window.show()
 
     app.exec_()
+=======
+import sys
+import json
+
+from ui import *
+
+#将结果汇总为json格式
+sys_txt1 = {}
+sys_txt1 ["id"] = "1"
+sys_txt1 ["type"] = "system"
+sys_txt1 ["name"] = system_jiagou.UserName
+sys_txt1 ["system"] = system_shuju.Caption + "\t" + system_shuju.OSArchitecture
+sys_txt1 ["install_time"] = system_data
+sys_txt1 ["sys_ram"] = str("%.2fGB"%(int(system_shuju.TotalVisibleMemorySize)/1024**2))
+sys_txt1 ["Manufacturer"] = system_jiagou.Manufacturer
+
+cpu_txt1 = {}
+cpu_txt1 ["id"] = "2"
+cpu_txt1 ["type"] = "cpu"
+cpu_txt1 ["name"] = cpu_name
+cpu_txt1 ["specs"] = "核心数:" + str(cpu_NumberOfCores) + "\t线程数:"+ str(cpu_NumberOfLogicalProcessors) + "\t基准频率:" + str("%.2f"%(cpu_pinlv[2]/1000))+ "GHz"
+
+gpu_txt0 = {}
+gpu_txt0 ["id"] = "6"
+gpu_txt0 ["type"] = "gpu0"
+gpu_txt0 ["AdapterCompatibility"] = gpu_loop0.AdapterCompatibility
+gpu_txt0 ["name"] = gpu_loop0.Description
+gpu_txt0 ["gpu_ram"] = str("%.2fGB"%(int(gpu_loop0.AdapterRAM)/1024 **3))
+gpu_txt0 ["gpu_resolution"] = str(gpu_loop0.CurrentHorizontalResolution) + "x" +str(gpu_loop0.CurrentVerticalResolution)
+gpu_txt0 ["CurrentRefreshRate"] = str(gpu_loop0.CurrentRefreshRate)
+
+
+
+
+#输出json
+textarr = []
+textarr.append(cpu_txt1)
+textarr.append(gpu_txt0)
+
+print(textarr)
+jtext = json.dumps(textarr,ensure_ascii=False)
+print(jtext)
+
+if __name__ == '__main__':
+
+    print(GPU(gpu_shuju()).gpu_name())
+    print(RAM(ram_shuju()).ram_speed())
+    print(DISK(disk_shuju()).disk_type())
+
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    app.exec_()
+
+
+
+>>>>>>> Stashed changes
