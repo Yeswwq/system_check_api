@@ -10,6 +10,7 @@ from gpu import *
 system_jiagou = w.Win32_ComputerSystem()[0]
 system_shuju = w.Win32_OperatingSystem()[0]
 ww = w.Win32_Processor()[0] #获取处理器详细信息
+print(ww)
 cpu_name = ww.Name #cpu型号
 cpu_NumberOfCores = ww.NumberOfCores #cpu核心数
 cpu_NumberOfLogicalProcessors = ww.NumberOfLogicalProcessors #cpu线程数

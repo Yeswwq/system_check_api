@@ -77,25 +77,31 @@ class DISK():
     def __init__(self,a):
         self.__a = a
         self.__a -= 1
+        self.__disk = w.Win32_DiskDrive()[self.__a]
 
     def disk_model(self):
-        disk_model = str(w.Win32_DiskDrive()[self.__a].Model)
+        disk_model = str(self.__disk.Model)
         return disk_model
     
     def disk_SerialNumber(self):
-        disk_SerialNumber = re.sub(r"\s+", "", w.Win32_DiskDrive()[self.__a].SerialNumber)
+        disk_SerialNumber = re.sub(r"\s+", "", self.__disk.SerialNumber)
         return disk_SerialNumber
 
     def disk_type(self):
         disk_type = re.compile(self.disk_SerialNumber() +'[A-Z][A-Z][A-Z]')
         disk_type = disk_type.search(disk_leixingshuju)
+        disk_InterfaceType = self.__disk.InterfaceType
         if "SSD" in disk_type.group():
-            disk_type = "固态硬盘"
+            disk_type = str(disk_InterfaceType) + "固态硬盘"
         else:
-            disk_type = "机械硬盘" 
+            disk_type = str(disk_InterfaceType) + "机械硬盘" 
         return disk_type
 
     def disk_size(self):
-        disk_size = str("%.2f"%(int(w.Win32_DiskDrive()[self.__a].Size)/1024 ** 3))
+        disk_size = str("%.2fGB"%(int(self.__disk.Size)/1024 ** 3))
         return disk_size
+
+    def disk_id(self):
+        disk_id = str(self.__disk.Name)
+        return disk_id
 

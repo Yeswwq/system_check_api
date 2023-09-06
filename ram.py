@@ -35,24 +35,29 @@ class RAM():
     def __init__(self,a):
         self.__a = a
         self.__a -= 1
+        self.__ram = w.Win32_PhysicalMemory()[self.__a]
 
     def ram_vendor(self):
-        ram_vendor = str(w.Win32_PhysicalMemory()[self.__a].Manufacturer)
+        ram_vendor = str(self.__ram.Manufacturer)
         return ram_vendor
 
+    def ram_PartNumber(self):
+        ram_PartNumber = str(self.__ram.PartNumber)
+        return ram_PartNumber
+
     def ram_size(self):
-        ram_size = str("%.2f"%(int(w.Win32_PhysicalMemory()[self.__a].Capacity)/1024 **3))
+        ram_size = str("%.2fGB"%(int(self.__ram.Capacity)/1024 **3))
         return ram_size
 
     def ram_speed(self):
-        ram_speed = str(w.Win32_PhysicalMemory()[self.__a].speed)
+        ram_speed = str(self.__ram.ConfiguredClockSpeed) + " Hz"
         return ram_speed
 
     def ram_maxspeed(self):
-        ram_maxspeed = str(w.Win32_PhysicalMemory()[self.__a].ConfiguredClockSpeed)
+        ram_maxspeed = str(self.__ram.Speed) + " Hz"
         return ram_maxspeed
 
     def ram_tag(self):
-        ram_tag = str(w.Win32_PhysicalMemory()[self.___a].Tag)
+        ram_tag = str(self.__ram.Tag)
         return ram_tag
 

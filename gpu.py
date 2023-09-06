@@ -24,21 +24,22 @@ class GPU():
     def __init__(self,a): 
         self.__a = a
         self.__a -= 1
+        self.__gpu = w.Win32_VideoController()[self.__a]
 
     def gpu_vendor(self):
-        gpu_vendor = w.Win32_VideoController()[self.__a].AdapterCompatibility
+        gpu_vendor = self.__gpu.AdapterCompatibility
         return gpu_vendor
 
     def gpu_name(self):
-        gpu_name = w.Win32_VideoController()[self.__a].Description
+        gpu_name = self.__gpu.Description
         return gpu_name
 
     def gpu_ram(self):
-        gpu_ram = str("%.2fGB"%(int(w.Win32_VideoController()[self.__a].AdapterRAM)/1024 **3))
+        gpu_ram = str("%.2fGB"%(int(self.__gpu.AdapterRAM)/1024 **3))
         return gpu_ram
 
     def gpu_resolution(self):
-        gpu_resolution =str(w.Win32_VideoController()[self.__a].CurrentHorizontalResolution) + "x" +str(w.Win32_VideoController()[self.__a].CurrentVerticalResolution) + "当前刷新率：" +str(w.Win32_VideoController()[self.__a].CurrentRefreshRate)
+        gpu_resolution ="分辨率：" + str(self.__gpu.CurrentHorizontalResolution) + "x" +str(self.__gpu.CurrentVerticalResolution) + " 当前刷新率：" +str(self.__gpu.CurrentRefreshRate)
         return gpu_resolution
 
 
